@@ -1,5 +1,6 @@
 import random
 import time
+import sys
 
 def bubble_sort(arr):   
   for i in range(len(arr)):
@@ -24,10 +25,13 @@ def compare_arrays(array1, array2):
 
     return True
 
-def test():
-    random_array = generate_random_array(50000)
+def test(n):
 
-    correct_array = list(range(1, 50001)) 
+    n = int(n);    
+
+    random_array = generate_random_array(n)
+
+    correct_array = list(range(1, n + 1)) 
 
     start_time = time.time()
     bubble_sort(random_array)
@@ -38,4 +42,14 @@ def test():
     print(compare_arrays(random_array, correct_array)) 
     print(f"Function execution time: {execution_time:.6f} seconds")
 
-test()
+if len(sys.argv) < 2:
+    print("Usage: python script.py <argument>")
+    sys.exit(1)
+
+script_name = sys.argv[0]
+argument = sys.argv[1]
+
+test(argument)
+
+print("Script name:", script_name)
+print("Argument:", argument)
